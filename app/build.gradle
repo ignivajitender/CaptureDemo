@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://artifactory.9elements.com/artifactory/imgly"
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.0-beta3'
+        classpath 'com.mutualmobile.gradle.plugins:dexinfo:0.1.2'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'com.mutualmobile.gradle.plugins.dexinfo'
+
+repositories {
+    jcenter()
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        applicationId "com.photoeditorsdk.android.app"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "3.0.0"
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'ly.img.android:photo-editor-sdk:3.0.3'
+    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:recyclerview-v7:25.1.0'
+}
